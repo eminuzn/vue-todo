@@ -1,0 +1,34 @@
+[
+  { 
+    "id":1, 
+    "name":"Yapılacaklar Listesi",
+    "tasks":[
+      {
+        "id":1,
+        "name":"Proje Yapılacak",
+        "description":"Projeninin genel hatları çıkarılacak ve gite atılacak"
+      },
+      {
+        "id":2,
+        "name":"Proje Yapılacak2",
+        "description":"Projeninin2 genel2 hatları2 çıkarılacak2 ve2 gite2 atılacak2"
+      }
+    ]
+  },
+  { 
+    "id":2, 
+    "name":"Yapılıyor",
+    "tasks":[
+      {
+        "id":1,
+        "name":"Proje Yapılacak23",
+        "description":"Projeninin23 genel23 hatları23 çıkarılacak ve gite atılacak"
+      },
+      {
+        "id":2,
+        "name":"Proje Yapılacak2312",
+        "description":"Projeninin2 12313genel2 hatları2123123 çıkarılacak2 ve2 gite2 atılacak2"
+      }
+    ]
+  }
+]
