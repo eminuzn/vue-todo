@@ -20,6 +20,17 @@ export default new Vuex.Store({
         description: taskData.taskDesc
       }
       state.lists.find(x=>x.id == taskData.listId).tasks.push(task)
+    },
+    addList(state, listName){
+      
+      let list = {
+        id: Math.floor(Math.random() * 1000), 
+        name: listName,
+        tasks : []
+      }
+
+      state.lists.push(list)
+
     }
   }
 })
