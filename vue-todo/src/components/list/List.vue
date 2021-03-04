@@ -1,15 +1,14 @@
 <template>
   <div class="list-container">
   
-    <h3>{{list.name}}</h3>
+    <h3 class="list-name">{{list.name}}</h3>
     <div class="tasks">
       <draggable 
         v-model="list.tasks" 
-        :list="list.tasks" 
-        group="lists" 
         v-bind="dragOptions"
         @start="drag = true"
-        @end="drag = false">
+        @end="drag = false"
+        @sort="onShort">
 
         <Task v-for="task in list.tasks" :key="task.id" :task="task" />
       </draggable>
@@ -40,16 +39,16 @@ export default {
     AddTask,
     draggable
   },
-  filters:{
-    getListUniqName(listId){
-      return "list-" + listId
+  methods: {
+    onShort(){
+      this.$store.commit("orderTasks", this.list.id)
     }
   },
   computed: {
     dragOptions() {
       return {
         animation: 200,
-        group: "description",
+        group: "task",
         disabled: false,
         ghostClass: "ghost"
       };
@@ -68,6 +67,13 @@ export default {
     border-bottom: 1px solid #d2d2d2;
     padding-bottom: 5px;
     margin-bottom: 5px;
+    padding: 10px;
+    cursor: move;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
   }
- 
+  
+  h3:hover{
+    background: #d2d2d2;
+  }
 </style>
