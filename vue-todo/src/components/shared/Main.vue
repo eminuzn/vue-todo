@@ -1,6 +1,8 @@
 <template>
   <main>
     <List :list="list" :key="list.id" v-for="list in lists"/>
+
+    
   </main>
 </template>
 

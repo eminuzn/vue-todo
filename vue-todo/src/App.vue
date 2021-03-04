@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header/>
-    <Main :lists="lists"/>
+    <Main :lists="getLists"/>
   </div>
 </template>
 
@@ -20,9 +20,13 @@ export default {
       lists: []
     }
   },
+  computed: {
+    getLists () {
+      return this.$store.state.lists
+    }
+  },
   async created(){
-    const listsData =await fetch("http://localhost:8080/data.json") 
-    this.lists = await listsData.json()
+    this.$store.commit('getLists')
   }
 }
 </script>

@@ -5,7 +5,10 @@
     <div v-if="isAddFormActive" class="add-form">
       <input v-model="formTaskName" placeholder="Başlık" type="text">
       <input v-model="formTaskDesc" placeholder="Açıklama" type="text">
-      <button @click="AddTask()">Ekle</button>
+      <div class="form-button-container">
+        <button class="submit" @click="AddTask()">Ekle</button>
+        <button class="cancel" @click="Cancel()">İptal</button>
+      </div>
     </div>
   </div>
 </template>
@@ -20,9 +23,34 @@ export default {
       formTaskDesc:""
     }
   },
+  props:{
+    listId: Number
+  },
   methods:{
     AddTask(){
-      this.isAddFormActive = !this.isAddFormActive
+
+      if(this.formTaskName == "")
+      {
+        alert("Başlık Alanı Zorunludur")
+      }
+      else
+      {
+        let taskData = {
+          listId : this.listId,
+          taskName : this.formTaskName,
+          taskDesc : this.formTaskDesc
+        }
+
+        this.$store.commit("addTask", taskData)
+        this.Cancel()
+      }
+      
+    },
+    Cancel(){
+
+        this.formTaskName = ""
+        this.formTaskDesc = ""
+        this.isAddFormActive = !this.isAddFormActive
     }
   }
 }
@@ -41,7 +69,9 @@ export default {
   input:focus{
     border: 2px solid #1687a7;
   }
-  button{
+  button,
+  .submit,
+  .cancel{
     width: 100%;
     height: 30px;
     border-radius: 8px;
@@ -52,7 +82,18 @@ export default {
     color: white;
     transition: all 0.3s ease-in-out;
   }
+  .cancel{
+    width: 49%;
+    background: #a71616;
+  }
+  .submit{
+    width: 49%;
+  }
   button:hover{
     background: #276678;
+  }
+  .form-button-container{
+    display: flex;
+    justify-content: space-between;
   }
 </style>
