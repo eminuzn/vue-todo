@@ -21,6 +21,8 @@ export default {
     margin: 10px 0;
     box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.5);
     border-radius: 5px;
+    background: white;
+    border: 1px solid #cccccc;
   }
   .header{
     font-weight: bold;

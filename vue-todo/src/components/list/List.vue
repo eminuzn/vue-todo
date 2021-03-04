@@ -3,7 +3,16 @@
   
     <h3>{{list.name}}</h3>
     <div class="tasks">
-      <Task v-for="task in list.tasks" :key="task.id" :task="task" />
+      <draggable 
+        v-model="list.tasks" 
+        :list="list.tasks" 
+        group="lists" 
+        v-bind="dragOptions"
+        @start="drag = true"
+        @end="drag = false">
+
+        <Task v-for="task in list.tasks" :key="task.id" :task="task" />
+      </draggable>
     </div>
 
     <AddTask :listId="list.id"/>
@@ -14,14 +23,37 @@
 <script>
 import Task from '../task/Task'
 import AddTask from '../task/AddTask'
+import draggable from 'vuedraggable'
+
 export default {
-  name:"List",
+  name:"List", 
+  data() {
+    return {
+      drag: false
+    };
+  },
   props: {
     list: Object
   },
   components:{
     Task,
-    AddTask
+    AddTask,
+    draggable
+  },
+  filters:{
+    getListUniqName(listId){
+      return "list-" + listId
+    }
+  },
+  computed: {
+    dragOptions() {
+      return {
+        animation: 200,
+        group: "description",
+        disabled: false,
+        ghostClass: "ghost"
+      };
+    }
   }
 }
 </script>
