@@ -9,7 +9,7 @@ export default new Vuex.Store({
   },
   mutations: {
     async getLists (state) {
-      const listsData =await fetch("http://localhost:8080/data.json") 
+      const listsData =await fetch("http://localhost:8085/data.json") 
       state.lists = await listsData.json()
     },
     addTask(state, taskData){
